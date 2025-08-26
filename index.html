@@ -2,17 +2,60 @@
 <html lang="en" >
 <head>
   <meta charset="UTF-8">
-  <title>Simple JS show/hide</title>
+  <title>NGBA-SECRETS</title>
   <link rel="stylesheet" href="./style.css">
 
 </head>
 <body>
 <!-- partial:index.partial.html -->
-<button id="show-element">Show it</button>
-<div id="to-show" class="hide">
-  <h1>Some hidden content</h1>
-  <p>Pressing the button shows this content. Nice!</p>
+<!-- HTML -->
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-6">
+      <form>
+        <div class="form-group">
+          <label>Código de Acesso</label>
+          <div class="input-group" id="show_hide_password">
+            <input class="form-control" type="text" placeholder="Digite seu código">
+          </div>
+          <!-- Aqui vai aparecer o resultado do nome -->
+          <small id="resultado" class="form-text text-muted mt-2"></small>
+          <!-- Aqui vai aparecer o link -->
+          <div id="linkArea" class="mt-2"></div>
+        </div>
+      </form>
+    </div>
+  </div>
 </div>
+
+<!-- Incluindo jQuery -->
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+<!-- JS -->
+<script>
+$(document).ready(function() {
+    // Garante que o input sempre seja visível
+    $('#show_hide_password input').attr('type', 'text'); 
+    
+    // Escuta o que o usuário digita
+    $('#show_hide_password input').on('input', function() {
+        let valor = $(this).val().toLowerCase().trim(); 
+        let resultado = "";
+        let link = "";
+
+        if (valor === "mimic") {
+            resultado = "mimic";
+            link = '<a href="https://www.notion.so/Ideias-254ad92a12318041bd1dc9aeddaf4c50" target="_blank">Abrir página de Mimic</a>';
+        } else if (valor === "onionknight") {
+            resultado = "onion knight";
+            link = '<a href="https://www.notion.so/Ideias-254ad92a12318041bd1dc9aeddaf4c50" target="_blank">Abrir página de Onion Knight</a>';
+        }
+
+        $("#resultado").text(resultado);
+        $("#linkArea").html(link);
+    });
+});
+</script>
 <!-- partial -->
   <script  src="./script.js"></script>
 
