@@ -1,55 +1,74 @@
-$(document).ready(function() {
-    // Garante que o input sempre seja visível
-    $('#show_hide_password input').attr('type', 'text'); 
-    
-    // Previne envio do formulário ao apertar Enter
-    $('#show_hide_password').closest('form').on('submit', function(event) {
-        event.preventDefault(); 
-    });
+/* Importa a fonte Poppins do Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
 
-    // Escuta o input do usuário
-    $('#show_hide_password input').on('input', function() {
-        let valor = $(this).val().toLowerCase().trim(); 
-        let resultado = "";
-        let link = "";
-        let cor = "gold"; // padrão dourado
+body {
+  background-color: #3b3b3b;
+  color: white;
+  font-size: 1rem;
+  margin: 0;
+  height: 100vh; /* ocupa tela toda */
+  display: flex;
+  justify-content: center;  /* centraliza horizontal */
+  align-items: center;      /* centraliza vertical */
+  font-family: 'Poppins', sans-serif;
+}
 
-        // Senhas que exibem "Classe Secreta"
-        if (valor === "mimic") {
-            resultado = "Classe Secreta";
-            link = '<a href="https://www.notion.so/Ideias-254ad92a12318041bd1dc9aeddaf4c50" target="_blank">Mímico</a>';
-            cor = "gold";
-        } else if (valor === "onionknight") {
-            resultado = "Classe Secreta";
-            link = '<a href="https://www.notion.so/Ideias-254ad92a12318041bd1dc9aeddaf4c50" target="_blank">Onion Knight</a>';
-            cor = "gold";
-        } 
-        // Senhas que exibem "Ideias descartadas" em vermelho
-        else if (["geomante","orador","caçador","apostador","escudeiro","piratadoceu"].includes(valor)) {
-            resultado = "Ideias Descartadas";
-            link = '<a href="https://www.notion.so/Ideias-254ad92a12318041bd1dc9aeddaf4c50" target="_blank">Página esquecida</a>';
-            cor = "red";
-        } 
-        // Caso nenhuma senha seja digitada
-        else {
-            resultado = "";
-            link = "";
-            cor = "gold";
-        }
+label {
+  color: white;
+  font-size: 1.2rem;
+  font-weight: 600;
+  display: block;
+  text-align: center;
+  margin-bottom: 10px;
+}
 
-        // Atualiza o texto e aplica centralização
-        $("#resultado").text(resultado).css({
-            'display': 'block',
-            'text-align': 'center',
-            'width': $('#show_hide_password input').outerWidth() + 'px',
-            'margin': '0 auto',
-            'color': cor
-        });
+.form-control {
+  background-color: #555;
+  color: white;
+  border: 1px solid #777;
+  font-size: 1rem;
+  height: 40px;
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+}
 
-        $("#linkArea").html(link).css({
-            'text-align': 'center',
-            'width': $('#show_hide_password input').outerWidth() + 'px',
-            'margin': '0 auto'
-        });
-    });
-});
+.form-control::placeholder {
+  color: #ccc;
+  font-size: 1rem;
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+}
+
+#resultado {
+  color: gold;
+  font-weight: bold;
+  font-size: 1rem;
+  text-align: center;
+  margin-top: 1rem;
+}
+
+#linkArea {
+  text-align: center;
+  margin-top: 0.5rem;
+}
+
+#linkArea a {
+  color: #3498db; /* padrão: azul */
+  text-decoration: none;
+  font-size: 1rem;
+  font-family: 'Poppins', sans-serif;
+}
+
+#linkArea a:hover {
+  text-decoration: underline;
+}
+
+/* link especial: vermelho (ex: Bestiário) */
+#linkArea a.red-link {
+  color: red;
+}
+
+/* largura máxima */
+.container .col-6 {
+  max-width: 600px;
+}
